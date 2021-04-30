@@ -11,14 +11,16 @@ function createWindow() {
       // To access the Node.js API from the Renderer process
       nodeIntegration: true,
       contextIsolation: false
-    }
+    },
+    // Showing window gracefully (use a color close to app's background)
+    backgroundColor: '#2B2E3B'
   });
 
   // Load `index.html` into the new BrowserWindow
   mainWindow.loadFile('index.html');
 
   // Open DevTools - Remove for PRODUCTION!
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
