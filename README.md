@@ -14,6 +14,9 @@
 ## API 文档
 
 - [Electron Documentation - API](https://www.electronjs.org/docs/api)
+- [Electron Documentation - app](https://www.electronjs.org/docs/api/app)
+- [Electron Documentation - BrowserWindow](https://www.electronjs.org/docs/api/browser-window)
+- [Electron Documentation - webContents](https://www.electronjs.org/docs/api/web-contents)
 
 ## 项目说明
 

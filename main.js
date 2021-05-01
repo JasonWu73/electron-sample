@@ -8,6 +8,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1000,
     height: 800,
+    minWidth: 550,
+    minHeight: 350,
     webPreferences: {
       preload: path.join(__dirname, 'js', 'preload.js')
     },
@@ -18,6 +20,8 @@ function createWindow() {
   const framelessWindow = new BrowserWindow({
     width: 1000,
     height: 800,
+    minWidth: 550,
+    minHeight: 350,
     webPreferences: {
       // To access the Node.js API from the Renderer process
       nodeIntegration: true,
@@ -28,7 +32,9 @@ function createWindow() {
     // Create frameless window
     frame: false,
     // Alternatives on macOS
-    titleBarStyle: 'hidden'
+    titleBarStyle: 'hidden',
+    // Hide when created
+    show: false
   });
 
   const childWindow = new BrowserWindow({
@@ -40,9 +46,9 @@ function createWindow() {
       contextIsolation: false
     },
     // Create child window
-    parent: mainWindow
-    // Hidden when created
-    // show: false
+    parent: mainWindow,
+    // Hide when created
+    show: false
   });
 
   const modalWindow = new BrowserWindow({
@@ -56,7 +62,7 @@ function createWindow() {
     // Create modal window
     parent: childWindow,
     modal: true,
-    // Hidden when created
+    // Hide when created
     show: false
   });
 
@@ -69,7 +75,7 @@ function createWindow() {
   // Open DevTools - Remove for PRODUCTION!
   const openDevTools = windows =>
       windows.forEach(window => window.webContents.openDevTools());
-
+ 
   openDevTools([mainWindow, framelessWindow, childWindow, modalWindow]);
 }
 
