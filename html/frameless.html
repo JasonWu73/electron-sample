@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="script-src 'self' 'unsafe-inline'">
-    <title>Hello Electron Secondary Window!</title>
-
-    <style>
-      html {
-        font-family: sans-serif;
-        background: #2B2E3B;
-        color: #9FEAF9;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Hello Electron Frameless Window!</title>
   </head>
-  <body>
-    <h1>Electron Secondary Window</h1>
+  <body class="drag">
+    <h1>Electron Frameless Window</h1>
     <p>Build cross-platform desktop apps with JavaScript, HTML, and CSS</p>
+    <br>
+    <br>
+    <input type="range" name="range" min="0" max="10" class="no-drag">
 
     <!-- You can also require other files to run in this process -->
-    <script src="../js/secondary.js"></script>
+    <script src="../js/frameless.js"></script>
   </body>
 </html>

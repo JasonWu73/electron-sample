@@ -15,7 +15,7 @@ function createWindow() {
     backgroundColor: '#2B2E3B'
   });
 
-  const secondaryWindow = new BrowserWindow({
+  const framelessWindow = new BrowserWindow({
     width: 1000,
     height: 800,
     webPreferences: {
@@ -24,7 +24,11 @@ function createWindow() {
       contextIsolation: false
     },
     // Showing window gracefully (use a color close to app's background)
-    backgroundColor: '#2B2E3B'
+    backgroundColor: '#2B2E3B',
+    // Create frameless window
+    frame: false,
+    // Alternatives on macOS
+    titleBarStyle: 'hidden'
   });
 
   const childWindow = new BrowserWindow({
@@ -36,9 +40,9 @@ function createWindow() {
       contextIsolation: false
     },
     // Create child window
-    parent: secondaryWindow,
+    parent: mainWindow
     // Hidden when created
-    show: false
+    // show: false
   });
 
   const modalWindow = new BrowserWindow({
@@ -58,7 +62,7 @@ function createWindow() {
 
   // Load HTML into the BrowserWindow
   mainWindow.loadFile('./html/index.html');
-  secondaryWindow.loadFile('./html/secondary.html');
+  framelessWindow.loadFile('./html/frameless.html');
   childWindow.loadFile('./html/child.html');
   modalWindow.loadFile('./html/modal.html');
 
@@ -66,7 +70,7 @@ function createWindow() {
   const openDevTools = windows =>
       windows.forEach(window => window.webContents.openDevTools());
 
-  openDevTools([mainWindow, secondaryWindow, childWindow, modalWindow]);
+  openDevTools([mainWindow, framelessWindow, childWindow, modalWindow]);
 }
 
 // This method will be called when Electron has finished
