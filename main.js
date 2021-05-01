@@ -1,10 +1,21 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron');
+const path = require('path');
 
 // Create a new BrowserWindow when `app` is ready
 function createWindow() {
   // Create the browser window
   const mainWindow = new BrowserWindow({
+    width: 1000,
+    height: 800,
+    webPreferences: {
+      preload: path.join(__dirname, 'js', 'preload.js')
+    },
+    // Showing window gracefully (use a color close to app's background)
+    backgroundColor: '#2B2E3B'
+  });
+
+  const secondaryWindow = new BrowserWindow({
     width: 1000,
     height: 800,
     webPreferences: {
@@ -16,11 +27,46 @@ function createWindow() {
     backgroundColor: '#2B2E3B'
   });
 
-  // Load `index.html` into the new BrowserWindow
-  mainWindow.loadFile('index.html');
+  const childWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      // To access the Node.js API from the Renderer process
+      nodeIntegration: true,
+      contextIsolation: false
+    },
+    // Create child window
+    parent: secondaryWindow,
+    // Hidden when created
+    show: false
+  });
+
+  const modalWindow = new BrowserWindow({
+    width: 600,
+    height: 400,
+    webPreferences: {
+      // To access the Node.js API from the Renderer process
+      nodeIntegration: true,
+      contextIsolation: false
+    },
+    // Create modal window
+    parent: childWindow,
+    modal: true,
+    // Hidden when created
+    show: false
+  });
+
+  // Load HTML into the BrowserWindow
+  mainWindow.loadFile('./html/index.html');
+  secondaryWindow.loadFile('./html/secondary.html');
+  childWindow.loadFile('./html/child.html');
+  modalWindow.loadFile('./html/modal.html');
 
   // Open DevTools - Remove for PRODUCTION!
-  // mainWindow.webContents.openDevTools();
+  const openDevTools = windows =>
+      windows.forEach(window => window.webContents.openDevTools());
+
+  openDevTools([mainWindow, secondaryWindow, childWindow, modalWindow]);
 }
 
 // This method will be called when Electron has finished

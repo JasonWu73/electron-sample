@@ -21,11 +21,11 @@
 
 通过 `nodeIntegration` 及 `contextIsolation` 配置，可去除掉 preload 脚本。
 
-> 可从渲染器进程中直接访问 Node.js API。
+> 可从渲染进程中直接访问 Node.js API，但安全性会差些，不建议用于加载远程资源。
 
 ### 页面 CSP
 
-简化 CSP，添加支持内嵌资源的策略。
+简化 CSP，添加支持内嵌资源（`'unsafe-inline'`）的策略。
 
 - [MDN - Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 

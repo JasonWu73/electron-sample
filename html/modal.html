@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+          content="script-src 'self' 'unsafe-inline'">
+    <title>Hello Electron Modal Window!</title>
+  </head>
+  <body>
+    <h1>Electron Modal Window</h1>
+    <p>Build cross-platform desktop apps with JavaScript, HTML, and CSS</p>
+
+    <button class="button button--red">Close Me!</button>
+
+    <!-- You can also write inline code run in this process -->
+    <script>
+      document.querySelector('.button').addEventListener('click', () => {
+        alert(
+            'Sorry! I don\'t Know how to close window in renderer process :(');
+      });
+    </script>
+  </body>
+</html>
