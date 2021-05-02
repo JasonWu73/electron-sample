@@ -38,11 +38,19 @@
 运行程序：
 
 ```bash
-npm start
+npm run start
 ```
 
 开发模式（自动重启服务）：
 
 ```bash
-npm watch
+npm run watch
+```
+
+打包与发布（自动识别当前平台）：
+
+```bash
+npm run package
+
+npm run make
 ```
