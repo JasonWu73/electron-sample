@@ -75,7 +75,7 @@ function createWindow() {
   // Open DevTools - Remove for PRODUCTION!
   const openDevTools = windows =>
       windows.forEach(window => window.webContents.openDevTools());
- 
+
   openDevTools([mainWindow, framelessWindow, childWindow, modalWindow]);
 }
 
