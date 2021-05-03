@@ -18,6 +18,7 @@
 - [Electron Documentation - BrowserWindow](https://www.electronjs.org/docs/api/browser-window)
 - [Electron Documentation - webContents](https://www.electronjs.org/docs/api/web-contents)
 - [Electron Documentation - session](https://www.electronjs.org/docs/api/session)
+- [Electron Documentation - Class: Cookies](https://www.electronjs.org/docs/api/cookies)
 
 ## 项目说明
 
