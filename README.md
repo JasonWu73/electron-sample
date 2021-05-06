@@ -11,7 +11,7 @@
 - [Electron Documentation - Debugging the Main Process](https://www.electronjs.org/docs/tutorial/debugging-main-process)
 - [Electron Documentation - Using Native Node Modules](https://www.electronjs.org/docs/tutorial/using-native-node-modules)
 
-## API 文档
+### 主进程
 
 - [Electron Documentation - API](https://www.electronjs.org/docs/api)
 - [Electron Documentation - app](https://www.electronjs.org/docs/api/app)
@@ -24,17 +24,17 @@
 - [Electron Documentation - powerMonitor](https://www.electronjs.org/docs/api/power-monitor)
 - [Electron Documentation - screen](https://www.electronjs.org/docs/api/screen)
 
-### 全局快捷键
+全局快捷键：
 
 - [Electron Documentation - Accelerator](https://www.electronjs.org/docs/api/accelerator)
 - [Electron Documentation - globalShortcut](https://www.electronjs.org/docs/api/global-shortcut)
 
-### 菜单（局部快捷键）
+菜单（局部快捷键）：
 
 -[Electron Documentation - Menu](https://www.electronjs.org/docs/api/menu)
 -[Electron Documentation - MenuItem](https://www.electronjs.org/docs/api/menu-item)
 
-### 系统工具栏图标
+系统工具栏图标：
 
 - [Electron Documentation - Tray](https://www.electronjs.org/docs/api/tray)
 - [Electron Documentation - nativeImage](https://www.electronjs.org/docs/api/native-image)
