@@ -20,6 +20,25 @@
 - [Electron Documentation - session](https://www.electronjs.org/docs/api/session)
 - [Electron Documentation - Class: Cookies](https://www.electronjs.org/docs/api/cookies)
 - [Electron Documentation - Class: DownloadItem](https://www.electronjs.org/docs/api/download-item)
+- [Electron Documentation - dialog](https://www.electronjs.org/docs/api/dialog)
+- [Electron Documentation - powerMonitor](https://www.electronjs.org/docs/api/power-monitor)
+- [Electron Documentation - screen](https://www.electronjs.org/docs/api/screen)
+
+### 全局快捷键
+
+- [Electron Documentation - Accelerator](https://www.electronjs.org/docs/api/accelerator)
+- [Electron Documentation - globalShortcut](https://www.electronjs.org/docs/api/global-shortcut)
+
+### 菜单（局部快捷键）
+
+-[Electron Documentation - Menu](https://www.electronjs.org/docs/api/menu)
+-[Electron Documentation - MenuItem](https://www.electronjs.org/docs/api/menu-item)
+
+### 系统工具栏图标
+
+- [Electron Documentation - Tray](https://www.electronjs.org/docs/api/tray)
+- [Electron Documentation - nativeImage](https://www.electronjs.org/docs/api/native-image)
+- [Retina Web Graphics Explained: 1x versus 2x (Low‑Res versus Hi‑Res)](https://www.danrodney.com/blog/retina-web-graphics-explained-1x-versus-2x-low-res-versus-hi-res/)
 
 ## 项目说明
 
