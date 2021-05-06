@@ -46,13 +46,18 @@
 - [webFrame](https://www.electronjs.org/docs/api/web-frame)
 - [desktopCapturer](https://www.electronjs.org/docs/api/desktop-capturer)
 
+### 进程间交互 API
+
+- [ipcMain](https://www.electronjs.org/docs/api/ipc-main)
+- [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer)
+
 ## 项目说明
 
 ### 去除 preload 脚本
 
 通过 `nodeIntegration` 及 `contextIsolation` 配置，可去除掉 preload 脚本。
 
-> 可从渲染器进程中直接访问 Node.js API，但安全性较差（因为 Node 主进程可直接访问系统中的文件），不建议用于加载非开发者开发可控的远程资源。
+> 从渲染器进程中直接访问 Node.js API，但安全性较差（因为 Node 主进程可直接访问系统中的文件），不建议用于加载非开发者开发可控的远程资源。
 
 ### 页面 CSP
 

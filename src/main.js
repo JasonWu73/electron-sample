@@ -11,74 +11,20 @@ function createWindow() {
     minWidth: 550,
     minHeight: 350,
     webPreferences: {
-      // To access the Node.js API from the Renderer process
-      nodeIntegration: true,
-      contextIsolation: false
+      preload: path.join(__dirname, 'modules', 'main', 'preload.js')
     },
     // Showing window gracefully (use a color close to app's background)
     backgroundColor: '#2B2E3B'
   });
 
-  const framelessWindow = new BrowserWindow({
-    width: 1000,
-    height: 800,
-    minWidth: 550,
-    minHeight: 350,
-    webPreferences: {
-      // To access the Node.js API from the Renderer process
-      nodeIntegration: true,
-      contextIsolation: false
-    },
-    // Showing window gracefully (use a color close to app's background)
-    backgroundColor: '#2B2E3B',
-    // Create frameless window
-    frame: false,
-    // Alternatives on macOS
-    titleBarStyle: 'hidden',
-    // Hide when created
-    show: false
-  });
-
-  const childWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      // To access the Node.js API from the Renderer process
-      nodeIntegration: true,
-      contextIsolation: false
-    },
-    // Create child window
-    parent: mainWindow,
-    // Hide when created
-    show: false
-  });
-
-  const modalWindow = new BrowserWindow({
-    width: 600,
-    height: 400,
-    webPreferences: {
-      // To access the Node.js API from the Renderer process
-      nodeIntegration: true,
-      contextIsolation: false
-    },
-    // Create modal window
-    parent: childWindow,
-    modal: true,
-    // Hide when created
-    show: false
-  });
-
   // Load HTML into the BrowserWindow
-  mainWindow.loadFile('./html/index.html');
-  framelessWindow.loadFile('./html/frameless.html');
-  childWindow.loadFile('./html/child.html');
-  modalWindow.loadFile('./html/modal.html');
+  mainWindow.loadFile('./src/modules/main/index.html');
 
   // Open DevTools - Remove for PRODUCTION!
   const openDevTools = windows =>
       windows.forEach(window => window.webContents.openDevTools());
 
-  openDevTools([mainWindow, framelessWindow, childWindow, modalWindow]);
+  openDevTools([mainWindow]);
 }
 
 // This method will be called when Electron has finished
