@@ -11,7 +11,9 @@ function createWindow() {
     minWidth: 550,
     minHeight: 350,
     webPreferences: {
-      preload: path.join(__dirname, 'js', 'preload.js')
+      // To access the Node.js API from the Renderer process
+      nodeIntegration: true,
+      contextIsolation: false
     },
     // Showing window gracefully (use a color close to app's background)
     backgroundColor: '#2B2E3B'
