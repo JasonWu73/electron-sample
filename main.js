@@ -1,6 +1,28 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, dialog, ipcMain} = require('electron');
 const path = require('path');
+
+async function askFruit() {
+
+  const fruits = ['Apple', 'Orange', 'Grape'];
+
+  const choice = await dialog.showMessageBox({
+    message: 'Pick a fruit:',
+    buttons: fruits
+  });
+
+  return fruits[choice.response];
+}
+
+// ipcMain.on('ask-fruit', e => {
+//   askFruit().then(answer => {
+//     e.reply('answer-fruit', answer)
+//   });
+// });
+
+ipcMain.handle('ask-fruit', e => {
+  return askFruit();
+});
 
 // Create a new BrowserWindow when `app` is ready
 function createWindow() {
@@ -11,14 +33,14 @@ function createWindow() {
     minWidth: 550,
     minHeight: 350,
     webPreferences: {
-      preload: path.join(__dirname, 'modules', 'main', 'preload.js')
+      preload: path.join(__dirname, 'renderer/mainPreload.js')
     },
     // Showing window gracefully (use a color close to app's background)
     backgroundColor: '#2B2E3B'
   });
 
   // Load HTML into the BrowserWindow
-  mainWindow.loadFile('./src/modules/main/index.html');
+  mainWindow.loadFile('renderer/main.html');
 
   // Open DevTools - Remove for PRODUCTION!
   const openDevTools = windows =>

@@ -51,19 +51,28 @@
 - [ipcMain](https://www.electronjs.org/docs/api/ipc-main)
 - [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer)
 
+考虑到安全性及性能，现已不推荐使用的 `remote` 模块：
+
+> 使用 `ipcRenderer.invoke(channel, ...args)` 和 `ipcMain.handle(channel, listener)`（在渲染器线程中调用主线程的方法）可替代 `remote`。
+
+- [remote](https://www.electronjs.org/docs/api/remote)
+- [Node.js documentation](https://nodejs.org/api/globals.html)
+
 ## 项目说明
 
 ### 去除 preload 脚本
 
 通过 `nodeIntegration` 及 `contextIsolation` 配置，可去除掉 preload 脚本。
 
-> 从渲染器进程中直接访问 Node.js API，但安全性较差（因为 Node 主进程可直接访问系统中的文件），不建议用于加载非开发者开发可控的远程资源。
+> 从渲染器进程中直接访问 Node.js API，但安全性较差（因为 Node 主进程可直接访问系统中的文件），不建议用于加载非开发者可控的远程资源。
 
 ### 页面 CSP
 
 简化 CSP，添加支持内嵌资源（`'unsafe-inline'`）的策略。
 
 - [MDN - Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
+### 开启 remote 模块
 
 ### 项目命令行工具
 

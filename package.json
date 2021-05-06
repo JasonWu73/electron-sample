@@ -2,7 +2,7 @@
   "name": "electron-sample",
   "version": "1.0.0",
   "description": "Electron 样板项目",
-  "main": "./src/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
     "watch": "nodemon --exec electron .",
