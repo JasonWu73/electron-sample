@@ -20,7 +20,7 @@ async function askFruit() {
 //   });
 // });
 
-ipcMain.handle('ask-fruit', e => {
+ipcMain.handle('ask-fruit', () => {
   return askFruit();
 });
 
