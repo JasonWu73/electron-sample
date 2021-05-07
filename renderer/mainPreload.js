@@ -10,12 +10,13 @@ contextBridge.exposeInMainWorld('electron', {
     electron: process.versions.electron
   },
 
-  askFruitAsync: () => {
-    // ipcRenderer.send('ask-fruit');
-    //
-    // ipcRenderer.on('answer-fruit', (e, answer) => {
-    //    console.log(answer);
-    // });
-    return ipcRenderer.invoke('ask-fruit');
+  askFruit: () => ipcRenderer.invoke('ask-fruit'),
+
+  askFruitWaiting: () => ipcRenderer.send('ask-fruit-on'),
+
+  answerFruit: (callback) => {
+    ipcRenderer.on('answer-fruit-on', (e, answer) => {
+      callback(answer);
+    });
   }
 });

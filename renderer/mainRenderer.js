@@ -6,6 +6,7 @@
 // process.
 
 const askButton = document.getElementById('ask');
+const askOnButton = document.getElementById('ask-on');
 
 const renderVersions = function () {
   const replaceText = (selector, text) => {
@@ -22,13 +23,24 @@ const renderVersions = function () {
 
 const handleAskClick = function () {
   askButton.addEventListener('click', () => {
-    window.electron.askFruitAsync().then(answer => console.log(answer));
+    window.electron.askFruit()
+    .then(answer => console.log(`invoke: ${answer}`));
   });
+};
+
+const handleAskOnClick = function () {
+  askOnButton.addEventListener('click', () => {
+    window.electron.askFruitWaiting();
+  });
+
+  window.electron.answerFruit(answer =>
+      console.log(`reply or send: ${answer}`));
 };
 
 const main = function () {
   renderVersions();
   handleAskClick();
+  handleAskOnClick();
 };
 
 main();

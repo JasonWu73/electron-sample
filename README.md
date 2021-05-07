@@ -37,7 +37,7 @@
 
 - [Docs: Tray](https://www.electronjs.org/docs/api/tray)
 - [Docs: nativeImage](https://www.electronjs.org/docs/api/native-image)
-    - [Retina Web Graphics Explained: 1x versus 2x (Low‑Res versus Hi‑Res)](https://www.danrodney.com/blog/retina-web-graphics-explained-1x-versus-2x-low-res-versus-hi-res/)
+    - [Retina Web Graphics Explained: 1x versus 2x](https://www.danrodney.com/blog/retina-web-graphics-explained-1x-versus-2x-low-res-versus-hi-res/)
 
 ### 渲染器进程 API
 
@@ -80,7 +80,7 @@
 
 通知：
 
-- [Docs: Notifications (Windows, Linux, macOS)](https://www.electronjs.org/docs/tutorial/notifications)
+- [Docs: Notifications](https://www.electronjs.org/docs/tutorial/notifications)
   -[MDN: Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification)
 
 安全：
@@ -89,6 +89,10 @@
 
 - [Docs: Context Isolation](https://www.electronjs.org/docs/tutorial/context-isolation)
 - [Docs: contextBridge](https://www.electronjs.org/docs/api/context-bridge)
+
+进度条：
+
+- [Docs: Progress Bar in Taskbar](https://www.electronjs.org/docs/tutorial/progress-bar)
 
 ## 项目说明
 
