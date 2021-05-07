@@ -67,6 +67,29 @@
     - [MDN: Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [Docs: clipboard](https://www.electronjs.org/docs/api/clipboard)
 
+### 补充技术
+
+幕后渲染：
+
+- [Docs: Offscreen Rendering](https://www.electronjs.org/docs/tutorial/offscreen-rendering)
+
+网络检测：
+
+- [MDN: Online & Offline Events](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events)
+- [MDN: onLine](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine)
+
+通知：
+
+- [Docs: Notifications (Windows, Linux, macOS)](https://www.electronjs.org/docs/tutorial/notifications)
+  -[MDN: Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification)
+
+安全：
+
+-[Docs: Security, Native Capabilities, and Your Responsibility](https://www.electronjs.org/docs/tutorial/security)
+
+- [Docs: Context Isolation](https://www.electronjs.org/docs/tutorial/context-isolation)
+- [Docs: contextBridge](https://www.electronjs.org/docs/api/context-bridge)
+
 ## 项目说明
 
 ### 去除 preload 脚本

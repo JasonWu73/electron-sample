@@ -14,15 +14,13 @@ async function askFruit() {
   return fruits[choice.response];
 }
 
-// ipcMain.on('ask-fruit', e => {
-//   askFruit().then(answer => {
-//     e.reply('answer-fruit', answer)
-//   });
-// });
-
 ipcMain.handle('ask-fruit', () => {
   return askFruit();
 });
+
+// ipcMain.on('ask-fruit', e => {
+//   askFruit().then(answer => e.reply('answer-fruit', answer));
+// });
 
 // Create a new BrowserWindow when `app` is ready
 function createWindow() {
