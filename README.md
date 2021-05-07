@@ -6,57 +6,66 @@
 
 ## 必读文档
 
-- [Quick Start Guide](https://www.electronjs.org/docs/tutorial/quick-start)
-- [Application Debugging](https://www.electronjs.org/docs/tutorial/application-debugging)
-- [Debugging the Main Process](https://www.electronjs.org/docs/tutorial/debugging-main-process)
-- [Using Native Node Modules](https://www.electronjs.org/docs/tutorial/using-native-node-modules)
+- [Docs: Quick Start Guide](https://www.electronjs.org/docs/tutorial/quick-start)
+- [Docs: Application Debugging](https://www.electronjs.org/docs/tutorial/application-debugging)
+- [Docs: Debugging the Main Process](https://www.electronjs.org/docs/tutorial/debugging-main-process)
+- [Docs: Using Native Node Modules](https://www.electronjs.org/docs/tutorial/using-native-node-modules)
 
 ### 主进程 API
 
-- [app](https://www.electronjs.org/docs/api/app)
-- [BrowserWindow](https://www.electronjs.org/docs/api/browser-window)
-- [webContents](https://www.electronjs.org/docs/api/web-contents)
-- [session](https://www.electronjs.org/docs/api/session)
-- [Class: Cookies](https://www.electronjs.org/docs/api/cookies)
-- [Class: DownloadItem](https://www.electronjs.org/docs/api/download-item)
-- [dialog](https://www.electronjs.org/docs/api/dialog)
-- [powerMonitor](https://www.electronjs.org/docs/api/power-monitor)
-- [screen](https://www.electronjs.org/docs/api/screen)
+- [Docs: app](https://www.electronjs.org/docs/api/app)
+- [Docs: BrowserWindow](https://www.electronjs.org/docs/api/browser-window)
+- [Docs: webContents](https://www.electronjs.org/docs/api/web-contents)
+- [Docs: session](https://www.electronjs.org/docs/api/session)
+- [Docs: Class: Cookies](https://www.electronjs.org/docs/api/cookies)
+- [Docs: Class: DownloadItem](https://www.electronjs.org/docs/api/download-item)
+- [Docs: dialog](https://www.electronjs.org/docs/api/dialog)
+- [Docs: powerMonitor](https://www.electronjs.org/docs/api/power-monitor)
+- [Docs: screen](https://www.electronjs.org/docs/api/screen)
 
 全局快捷键：
 
-- [Accelerator](https://www.electronjs.org/docs/api/accelerator)
-- [globalShortcut](https://www.electronjs.org/docs/api/global-shortcut)
+- [Docs: Accelerator](https://www.electronjs.org/docs/api/accelerator)
+- [Docs: globalShortcut](https://www.electronjs.org/docs/api/global-shortcut)
 
 菜单（局部快捷键）：
 
--[Menu](https://www.electronjs.org/docs/api/menu)
--[MenuItem](https://www.electronjs.org/docs/api/menu-item)
+-[Docs: Menu](https://www.electronjs.org/docs/api/menu)
+-[Docs: MenuItem](https://www.electronjs.org/docs/api/menu-item)
 
 系统工具栏图标：
 
-- [Tray](https://www.electronjs.org/docs/api/tray)
-- [nativeImage](https://www.electronjs.org/docs/api/native-image)
-- [Retina Web Graphics Explained: 1x versus 2x (Low‑Res versus Hi‑Res)](https://www.danrodney.com/blog/retina-web-graphics-explained-1x-versus-2x-low-res-versus-hi-res/)
+- [Docs: Tray](https://www.electronjs.org/docs/api/tray)
+- [Docs: nativeImage](https://www.electronjs.org/docs/api/native-image)
+    - [Retina Web Graphics Explained: 1x versus 2x (Low‑Res versus Hi‑Res)](https://www.danrodney.com/blog/retina-web-graphics-explained-1x-versus-2x-low-res-versus-hi-res/)
 
 ### 渲染器进程 API
 
-- [Opening windows from the renderer](https://www.electronjs.org/docs/api/window-open)
-- [Class: BrowserWindowProxy](https://www.electronjs.org/docs/api/browser-window-proxy)
-- [webFrame](https://www.electronjs.org/docs/api/web-frame)
-- [desktopCapturer](https://www.electronjs.org/docs/api/desktop-capturer)
+- [Docs: Opening windows from the renderer](https://www.electronjs.org/docs/api/window-open)
+- [Docs: Class: BrowserWindowProxy](https://www.electronjs.org/docs/api/browser-window-proxy)
+- [Docs: webFrame](https://www.electronjs.org/docs/api/web-frame)
+- [Docs: desktopCapturer](https://www.electronjs.org/docs/api/desktop-capturer)
 
 ### 进程间交互 API
 
-- [ipcMain](https://www.electronjs.org/docs/api/ipc-main)
-- [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer)
+- [Docs: ipcMain](https://www.electronjs.org/docs/api/ipc-main)
+- [Docs: ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer)
 
 考虑到安全性及性能，现已不推荐使用的 `remote` 模块：
 
 > 使用 `ipcRenderer.invoke(channel, ...args)` 和 `ipcMain.handle(channel, listener)`（在渲染器线程中调用主线程的方法）可替代 `remote`。
 
-- [remote](https://www.electronjs.org/docs/api/remote)
-- [Node.js documentation](https://nodejs.org/api/globals.html)
+- [Docs: remote](https://www.electronjs.org/docs/api/remote)
+    - [Node.js: Globals](https://nodejs.org/api/globals.html)
+
+### 主线程与渲染器进程共享的 API
+
+- [Docs: process](https://www.electronjs.org/docs/api/process)
+    - [Node.js: Process](https://nodejs.org/api/process.html)
+- [Docs: shell](https://www.electronjs.org/docs/api/shell)
+- [Docs: nativeImage](https://www.electronjs.org/docs/api/native-image)
+    - [MDN: Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- [Docs: clipboard](https://www.electronjs.org/docs/api/clipboard)
 
 ## 项目说明
 
