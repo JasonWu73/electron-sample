@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="script-src 'self' 'unsafe-inline'">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../common/global.css">
+    <link rel="stylesheet" href="./main.css">
     <title>网址收藏夹</title>
   </head>
-  <body>
-    <div class="bookmarking">
-      <header class="bookmarking__header">
-        <button class="btn btn--primary bookmarking__header__add">+</button>
-        <input type="text" placeholder="搜索" class="bookmarking__header__search">
-      </header>
+  <body class="bookmarking">
+    <header class="bookmarking__header">
+      <button
+          class="btn btn--large btn--primary bookmarking__header__add">
+        +
+      </button>
+      <input type="text" placeholder="搜索"
+             class="input input--large bookmarking__header__search">
+    </header>
 
-      <main class="bookmarking__content">
-        <p class="bookmarking__content__no-items">无</p>
-        <div class="bookmarking__content__items"></div>
-      </main>
-
-      <div class="bookmarking__modal">
-        <input type="text" placeholder="输入网址" class="bookmarking__modal__url">
-        <button class="btn btn--primary bookmarking__modal__add">添加</button>
-        <button class="btn btn--cancel bookmarking__modal__cancel">取消</button>
+    <main class="bookmarking__content">
+      <p class="bookmarking__content__no-items">无</p>
+      <div class="bookmarking__content__items">
+        <!--<div class="bookmarking__content__item">
+          <img src="https://via.placeholder.com/500/500">
+          <h2>书签标题</h2>
+        </div>-->
       </div>
+    </main>
+
+    <div class="bookmarking__modal">
+      <input type="text" placeholder="输入网址"
+             class="input input--large bookmarking__modal__url">
+      <button class="btn btn--primary bookmarking__modal__add">
+        添加
+      </button>
+      <button class="btn bookmarking__modal__cancel">取消</button>
     </div>
 
     <script src="./app.js"></script>

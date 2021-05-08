@@ -2,6 +2,8 @@ const {app, BrowserWindow} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 
+require('./main/ipc');
+
 function createWindow() {
   // electron-window-state: 1
   const mainWindowState = windowStateKeeper({
