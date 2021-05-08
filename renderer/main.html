@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="script-src 'self' 'unsafe-inline'">
-    <link rel="stylesheet" href="../styles/global.css">
-    <title>Hello Electron!</title>
+    <link rel="stylesheet" href="main.css">
+    <title>网址收藏夹</title>
   </head>
   <body>
-    <h1>Hello Electron!</h1>
+    <div class="bookmarking">
+      <header class="bookmarking__header">
+        <button class="btn btn--primary bookmarking__header__add">+</button>
+        <input type="text" placeholder="搜索" class="bookmarking__header__search">
+      </header>
 
-    <section>
-      We are using Node.js <span id="node-version"></span>,
-      Chromium <span id="chrome-version"></span>,
-      and Electron <span id="electron-version"></span>.
-    </section>
+      <main class="bookmarking__content">
+        <p class="bookmarking__content__no-items">无</p>
+        <div class="bookmarking__content__items"></div>
+      </main>
 
-    <button id="ask" class="button button--blue">
-      Pick a fruit (invoke)
-    </button>
-    <button id="ask-on" class="button button--blue">
-      Pick a fruit (replay & send)
-    </button>
+      <div class="bookmarking__modal">
+        <input type="text" placeholder="输入网址" class="bookmarking__modal__url">
+        <button class="btn btn--primary bookmarking__modal__add">添加</button>
+        <button class="btn btn--cancel bookmarking__modal__cancel">取消</button>
+      </div>
+    </div>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./mainRenderer.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
