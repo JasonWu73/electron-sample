@@ -1,23 +1,40 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron');
+const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 
-const {ipcAskFruit, ipcAskAnswerFruit} = require('./main/dialog');
+require('./main/ipc');
+
+// 离屏渲染：禁用 GPU 渲染，改用软件渲染，效率更高
+app.disableHardwareAcceleration();
 
 // Create a new BrowserWindow when `app` is ready
 function createWindow() {
+  // electron-window-state: 1
+  const mainWindowState = windowStateKeeper({
+    defaultWidth: 420,
+    defaultHeight: 240
+  });
+
+  // electron-window-state: 2
   // Create the browser window
   const mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 800,
-    minWidth: 550,
-    minHeight: 350,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    minWidth: 420,
+    maxWidth: 420,
+    minHeight: 240,
     webPreferences: {
-      preload: path.join(__dirname, 'renderer/mainPreload.js')
+      preload: path.join(__dirname, 'renderer/preload.js')
     },
     // Showing window gracefully (use a color close to app's background)
     backgroundColor: '#2B2E3B'
   });
+ 
+  // electron-window-state: 3
+  mainWindowState.manage(mainWindow);
 
   // Load HTML into the BrowserWindow
   mainWindow.loadFile('renderer/main.html');
@@ -55,6 +72,3 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-ipcAskFruit();
-ipcAskAnswerFruit()

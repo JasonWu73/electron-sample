@@ -1,0 +1,19 @@
+.sample {
+  background: #2B2E3B;
+  color: #9FEAF9;
+  user-select: none;
+  padding: 1rem;
+}
+
+.sample__versions {
+  padding: 1rem;
+  line-height: 1.7;
+}
+
+.sample__buttons {
+  display: flex;
+}
+
+.sample__buttons__ask-invoke {
+  margin-right: 1rem;
+}

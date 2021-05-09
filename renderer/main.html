@@ -4,26 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="script-src 'self' 'unsafe-inline'">
-    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../common/global.css">
+    <link rel="stylesheet" href="./main.css">
     <title>Hello Electron!</title>
   </head>
-  <body>
+  <body class="sample">
     <h1>Hello Electron!</h1>
 
-    <section>
-      We are using Node.js <span id="node-version"></span>,
-      Chromium <span id="chrome-version"></span>,
-      and Electron <span id="electron-version"></span>.
+    <section class="sample__versions">
+      <div>
+        We are using Node.js <span id="node-version"></span>,
+      </div>
+      <div>
+        Chromium <span id="chrome-version"></span>,
+      </div>
+      <div>
+        and Electron <span id="electron-version"></span>.
+      </div>
     </section>
 
-    <button id="ask" class="button button--blue">
-      Pick a fruit (invoke)
-    </button>
-    <button id="ask-on" class="button button--blue">
-      Pick a fruit (replay & send)
-    </button>
+    <div class="sample__buttons">
+      <button class="btn btn--primary btn--large sample__buttons__ask-invoke">
+        Pick a fruit (invoke)
+      </button>
+      <button class="btn btn--large sample__buttons__ask-send">
+        Pick a fruit (replay & send)
+      </button>
+    </div>
 
     <!-- You can also require other files to run in this process -->
-    <script src="./mainRenderer.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

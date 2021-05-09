@@ -3,6 +3,8 @@
 
 const {contextBridge, ipcRenderer} = require('electron');
 
+const constants = require('../common/constants')
+
 contextBridge.exposeInMainWorld('electron', {
   versions: {
     chrome: process.versions.chrome,
@@ -10,12 +12,12 @@ contextBridge.exposeInMainWorld('electron', {
     electron: process.versions.electron
   },
 
-  askFruit: () => ipcRenderer.invoke('ask-fruit'),
+  askFruit: () => ipcRenderer.invoke(constants.IPC_ASK_FRUIT),
 
-  askFruitWaiting: () => ipcRenderer.send('ask-fruit-on'),
+  sendAskFruit: () => ipcRenderer.send(constants.IPC_SEND_ASK_FRUIT),
 
-  answerFruit: (callback) => {
-    ipcRenderer.on('answer-fruit-on', (e, answer) => {
+  replyFruit: (callback) => {
+    ipcRenderer.on(constants.IPC_REPLY_ASK_FRUIT, (e, answer) => {
       callback(answer);
     });
   }

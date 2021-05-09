@@ -5,8 +5,10 @@
 // selectively enable features needed in the rendering
 // process.
 
-const askButton = document.getElementById('ask');
-const askOnButton = document.getElementById('ask-on');
+const askInvokeBtn = document.querySelector(
+    '.sample__buttons__ask-invoke');
+const askSendBtn = document.querySelector(
+    '.sample__buttons__ask-send');
 
 const renderVersions = function () {
   const replaceText = (selector, text) => {
@@ -21,26 +23,26 @@ const renderVersions = function () {
   }
 };
 
-const handleAskClick = function () {
-  askButton.addEventListener('click', () => {
+const handleInvokeAsk = function () {
+  askInvokeBtn.addEventListener('click', () => {
     window.electron.askFruit()
     .then(answer => console.log(`invoke: ${answer}`));
   });
 };
 
-const handleAskOnClick = function () {
-  askOnButton.addEventListener('click', () => {
-    window.electron.askFruitWaiting();
+const handleSendReplyAsk = function () {
+  askSendBtn.addEventListener('click', () => {
+    window.electron.sendAskFruit();
   });
 
-  window.electron.answerFruit(answer =>
+  window.electron.replyFruit(answer =>
       console.log(`reply or send: ${answer}`));
 };
 
 const main = function () {
   renderVersions();
-  handleAskClick();
-  handleAskOnClick();
+  handleInvokeAsk();
+  handleSendReplyAsk();
 };
 
 main();
