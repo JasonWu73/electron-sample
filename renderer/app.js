@@ -1,21 +1,30 @@
+import items from './items.js';
+
 const loadingClassName = 'btn--loading';
 
-const showModalBtn = document.querySelector('.bookmarking__header__add');
-const hideModalBtn = document.querySelector('.bookmarking__modal__cancel');
-const modal = document.querySelector('.bookmarking__modal');
-const addItemBtn = document.querySelector('.bookmarking__modal__add');
-const itemUrl = document.querySelector('.bookmarking__modal__url');
+const searchInput = document.querySelector(
+    '.bookmarking__header__search');
+const showModalBtn = document.querySelector(
+    '.bookmarking__header__add');
+const hideModalBtn = document.querySelector(
+    '.bookmarking__modal__cancel');
+const modalElement = document.querySelector(
+    '.bookmarking__modal');
+const addItemBtn = document.querySelector(
+    '.bookmarking__modal__add');
+const itemUrlInput = document.querySelector(
+    '.bookmarking__modal__url');
 
 const handleShowModal = function () {
   showModalBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    itemUrl.focus();
+    modalElement.style.display = 'flex';
+    itemUrlInput.focus();
   });
 };
 
 const handleHideModal = function () {
   hideModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
+    modalElement.style.display = 'none';
   });
 };
 
@@ -36,29 +45,57 @@ const handleAddItem = function () {
   };
 
   addItemBtn.addEventListener('click', () => {
-    if (itemUrl.value) {
-      window.electron.addItemWaiting(itemUrl.value);
+    if (itemUrlInput.value) {
+      window.electron.addItemWaiting(itemUrlInput.value);
 
       toggleModalButtons();
     }
   });
 
-  itemUrl.addEventListener('keyup', e => {
+  itemUrlInput.addEventListener('keyup', e => {
     if (e.key === 'Enter' && !isAddItemButtonDisabled()) {
       addItemBtn.click();
     }
   });
 
   const hideAndClear = () => {
-    modal.style.display = 'none';
-    itemUrl.value = '';
+    modalElement.style.display = 'none';
+    itemUrlInput.value = '';
   };
 
-  window.electron.answerAddItem((newItem) => {
-    console.log(newItem);
+  window.electron.answerAddItem(({status, title, screenshot, url}) => {
+    if (status === window.electron.SUCCESS) {
+      items.addItem({title, screenshot, url}, false);
+      hideAndClear();
+    }
 
     toggleModalButtons();
-    hideAndClear();
+  });
+};
+
+const handleSearch = function () {
+  searchInput.addEventListener('keyup', () => {
+    Array.from(document.querySelectorAll('.bookmarking__content__item'))
+    .forEach(itemNode => {
+
+      const hasMatch = itemNode.innerText.toLowerCase()
+      .includes(searchInput.value.toLowerCase());
+
+      itemNode.style.display = hasMatch ? 'flex' : 'none';
+    });
+  });
+};
+
+const handleArrowUpArrowDownKey = function () {
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      items.changeSelection(e.key);
+    } else if (e.key === 'Enter') {
+      if (e.target !== searchInput) {
+        items.getSelectedItem()
+        .dispatchEvent(new MouseEvent('dblclick'));
+      }
+    }
   });
 };
 
@@ -66,6 +103,8 @@ const main = function () {
   handleShowModal();
   handleHideModal();
   handleAddItem();
+  handleSearch();
+  handleArrowUpArrowDownKey();
 };
 
 main();

@@ -1,11 +1,10 @@
 const {ipcMain} = require('electron');
 
 const constants = require('../common/constants');
+const readItem = require('./readItem');
 
 ipcMain.on(constants.IPC_ADD_ITEM, (e, itemUrl) => {
-  setTimeout(() => {
-    e.sender.send(constants.IPC_ANSWER_ADD_ITEM,
-        `主进程处理 ${itemUrl}`);
-  }, 2000);
-  console.log(itemUrl);
+  readItem(itemUrl, newItem =>
+      // e.sender.send(constants.IPC_REPLY_ADD_ITEM, newItem));
+      e.reply(constants.IPC_REPLY_ADD_ITEM, newItem));
 });

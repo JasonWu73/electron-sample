@@ -17,7 +17,13 @@
 
 .bookmarking__content {
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
+
+  /* 用于 JS 中取 offsetTop */
+  position: relative;
+
+  /* 避免双击时选中内容 */
+  user-select: none;
 }
 
 .bookmarking__content__no-items {
@@ -37,6 +43,14 @@
   border-bottom: .2rem solid lightgray;
   background: #fafafa;
   padding: 1rem;
+}
+
+.bookmarking__content__item:hover {
+  background: #eee;
+}
+
+.bookmarking__content__item.selected {
+  border-left: .5rem solid #096dd9;
 }
 
 .bookmarking__content__item img {

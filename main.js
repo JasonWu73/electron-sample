@@ -4,6 +4,9 @@ const path = require('path');
 
 require('./main/ipc');
 
+// 离屏渲染：禁用 GPU 渲染，改用软件渲染，效率更高
+app.disableHardwareAcceleration();
+
 function createWindow() {
   // electron-window-state: 1
   const mainWindowState = windowStateKeeper({
