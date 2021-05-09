@@ -46,7 +46,7 @@ const handleAddItem = function () {
 
   addItemBtn.addEventListener('click', () => {
     if (itemUrlInput.value) {
-      window.electron.addItemWaiting(itemUrlInput.value);
+      window.electron.sendAddItem(itemUrlInput.value);
 
       toggleModalButtons();
     }
@@ -63,7 +63,7 @@ const handleAddItem = function () {
     itemUrlInput.value = '';
   };
 
-  window.electron.answerAddItem(({status, title, screenshot, url}) => {
+  window.electron.replyAddItem(({status, title, screenshot, url}) => {
     if (status === window.electron.SUCCESS) {
       items.addItem({title, screenshot, url}, false);
       hideAndClear();
@@ -87,14 +87,20 @@ const handleSearch = function () {
 };
 
 const handleArrowUpArrowDownKey = function () {
+  const canDoKeyboardAction = obj => {
+    const isHiddenModal = !modalElement.style.display ||
+        modalElement.style.display === 'none';
+
+    return obj === document.body && isHiddenModal;
+  };
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') &&
+        canDoKeyboardAction(e.target)) {
       items.changeSelection(e.key);
-    } else if (e.key === 'Enter') {
-      if (e.target !== searchInput) {
-        items.getSelectedItem()
-        .dispatchEvent(new MouseEvent('dblclick'));
-      }
+    } else if (e.key === 'Enter' && canDoKeyboardAction(e.target)) {
+      items.getSelectedItem().dispatchEvent(
+          new MouseEvent('dblclick'));
     }
   });
 };

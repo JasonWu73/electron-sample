@@ -1,7 +1,7 @@
 {
-  "name": "electron-sample",
+  "name": "bookmarking",
   "version": "1.0.0",
-  "description": "Electron 样板项目",
+  "description": "网址收藏夹",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",

@@ -281,3 +281,14 @@ textarea.input {
   transition: all .3s, height 0s;
   vertical-align: bottom;
 }
+
+/* Electron Frameless Window */
+.drag {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  padding-top: 3.6rem;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}

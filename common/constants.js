@@ -4,6 +4,6 @@ module.exports = Object.freeze({
 
   LOCAL_STORAGE_KEY_ITEMS: 'bookmarking-items',
 
-  IPC_ADD_ITEM: 'add-item',
+  IPC_SEND_ADD_ITEM: 'send-add-item',
   IPC_REPLY_ADD_ITEM: 'reply-add-item'
 });
