@@ -66,8 +66,19 @@ const changeSelection = function (direction) {
 
 const open = function () {
   const currentItem = getSelectedItem();
-  const url = currentItem.dataset.url;
-  console.log(url);
+  const contentUrl = currentItem.dataset.url;
+
+  const readerWindowProxy = window.open(contentUrl, '', `
+    width: 1200,
+    height: 800,
+    maxWidth=2000,
+    maxHeight=2000,
+    backgroundColor=#dedede
+  `);
+
+  window.electron.readJs('./reader.js', jsCode => {
+    readerWindowProxy.eval(jsCode);
+  });
 };
 
 const initItems = function () {
