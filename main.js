@@ -3,6 +3,7 @@ const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 
 require('./main/ipc');
+const {ApplicationMenu} = require('./main/menu');
 
 // 离屏渲染：禁用 GPU 渲染，改用软件渲染，效率更高
 app.disableHardwareAcceleration();
@@ -33,10 +34,13 @@ function createWindow() {
 
   mainWindow.loadFile('renderer/main.html');
 
+  // 创建应用菜单
+  new ApplicationMenu(mainWindow);
+
   const openDevTools = windows =>
       windows.forEach(window => window.webContents.openDevTools());
 
-  openDevTools([mainWindow]);
+  // openDevTools([mainWindow]);
 }
 
 app.whenReady().then(() => {

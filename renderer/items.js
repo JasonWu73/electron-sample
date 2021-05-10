@@ -6,7 +6,7 @@ const contentElement = document.querySelector(
 const storage = JSON.parse(
     localStorage.getItem(window.electron.KEY_STORAGE)) || [];
 
-const save = function () {
+const save = () => {
   localStorage.setItem(window.electron.KEY_STORAGE,
       JSON.stringify(storage));
 };
@@ -15,10 +15,35 @@ const getSelectedItem = function () {
   return document.querySelector('.bookmarking__content__item.selected');
 };
 
-const select = function (e) {
+const select = e => {
   getSelectedItem().classList.remove('selected');
 
   e.currentTarget.classList.add('selected');
+};
+
+const open = function () {
+  const currentItem = getSelectedItem();
+  const contentUrl = currentItem.dataset.url;
+
+  const readerWindowProxy = window.open(contentUrl, '', `
+    width: 1200,
+    height: 800,
+    maxWidth=2000,
+    maxHeight=2000,
+    backgroundColor=#dedede
+  `);
+
+  window.electron.readJs('./reader.js', jsCode => {
+    readerWindowProxy.eval(jsCode);
+  });
+};
+
+const openNative = function () {
+  const currentItem = getSelectedItem();
+  const contentUrl = currentItem.dataset.url;
+
+  // 通过用户默认浏览器打开网址
+  window.electron.openNative(contentUrl);
 };
 
 const addItem = (item, initial) => {
@@ -49,6 +74,9 @@ const addItem = (item, initial) => {
 
 const changeSelection = function (direction) {
   let currentItem = getSelectedItem();
+  if (!currentItem) {
+    return;
+  }
 
   if (direction === 'ArrowUp' && currentItem.previousElementSibling) {
     currentItem.classList.remove('selected');
@@ -64,24 +92,7 @@ const changeSelection = function (direction) {
   contentElement.scrollTop = currentItem.offsetTop;
 };
 
-const open = function () {
-  const currentItem = getSelectedItem();
-  const contentUrl = currentItem.dataset.url;
-
-  const readerWindowProxy = window.open(contentUrl, '', `
-    width: 1200,
-    height: 800,
-    maxWidth=2000,
-    maxHeight=2000,
-    backgroundColor=#dedede
-  `);
-
-  window.electron.readJs('./reader.js', jsCode => {
-    readerWindowProxy.eval(jsCode);
-  });
-};
-
-const initItems = function () {
+const initItems = () => {
   storage.forEach(item => addItem(item, true));
 };
 
@@ -119,9 +130,7 @@ const remove = function () {
   }
 };
 
-const main = function () {
-  initItems();
-
+const listenSubWindowMessage = () => {
   window.electron.listenSubWindowMessage(event => {
     // 监听由子窗口发送来的"移除"消息
     if (event.data.signal === window.electron.REMOVE_ITEM) {
@@ -131,10 +140,17 @@ const main = function () {
   });
 };
 
+const main = () => {
+  initItems();
+  listenSubWindowMessage();
+};
+
 main();
 
 export default {
   addItem,
-  getSelectedItem,
+  open,
+  openNative,
+  remove,
   changeSelection
 };

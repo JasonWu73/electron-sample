@@ -98,10 +98,37 @@ const handleArrowUpArrowDownKey = function () {
     if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') &&
         canDoKeyboardAction(e.target)) {
       items.changeSelection(e.key);
-    } else if (e.key === 'Enter' && canDoKeyboardAction(e.target)) {
-      items.getSelectedItem().dispatchEvent(
-          new MouseEvent('dblclick'));
     }
+  });
+};
+
+const openModalFromMenu = () => {
+  window.electron.receivedOpenModal(() => {
+    showModalBtn.click();
+  });
+};
+
+const openItemFromMenu = () => {
+  window.electron.receivedOpenItem(() => {
+    items.open();
+  });
+};
+
+const deleteItemFromMenu = () => {
+  window.electron.receivedDeleteItem(() => {
+    items.remove();
+  });
+};
+
+const openItemNativeFromMenu = () => {
+  window.electron.receivedOpenItemNative(() => {
+    items.openNative();
+  });
+};
+
+const focusOnSearch = () => {
+  window.electron.receivedFocusOnSearch(() => {
+    searchInput.focus();
   });
 };
 
@@ -111,6 +138,11 @@ const main = function () {
   handleAddItem();
   handleSearch();
   handleArrowUpArrowDownKey();
+  openModalFromMenu();
+  openItemFromMenu();
+  deleteItemFromMenu();
+  openItemNativeFromMenu();
+  focusOnSearch();
 };
 
 main();
