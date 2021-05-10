@@ -85,8 +85,50 @@ const initItems = function () {
   storage.forEach(item => addItem(item, true));
 };
 
+const getItemIndex = currentItem => {
+  let itemIndex = 0;
+  let child = currentItem;
+  while ((child = child.previousElementSibling) !== null) {
+    ++itemIndex;
+  }
+  return itemIndex;
+};
+
+const remove = function () {
+  // 获取删除节点及其在父元素中的索引
+  const currentItem = getSelectedItem();
+  const currentItemIndex = getItemIndex(currentItem);
+
+  // 删除 DOM 节点
+  itemsElement.removeChild(currentItem);
+
+  // 删除数据
+  storage.splice(currentItemIndex, 1);
+  save();
+
+  // 选中上一个兄弟节点
+  // 有上一个兄弟节点：选中该节点
+  // 没有上一个兄弟节点：选中第一个节点
+  if (storage.length) {
+    const newSelectedItemIndex =
+        currentItemIndex === 0 ? 0 : currentItemIndex - 1;
+
+    document.querySelectorAll(
+        '.bookmarking__content__item')[newSelectedItemIndex]
+    .classList.add('selected');
+  }
+};
+
 const main = function () {
   initItems();
+
+  window.electron.listenSubWindowMessage(event => {
+    // 监听由子窗口发送来的"移除"消息
+    if (event.data.signal === window.electron.REMOVE_ITEM) {
+      remove();
+      event.source.close();
+    }
+  });
 };
 
 main();
