@@ -37,10 +37,8 @@ function createWindow() {
   // 创建应用菜单
   new ApplicationMenu(mainWindow);
 
-  const openDevTools = windows =>
-      windows.forEach(window => window.webContents.openDevTools());
-
-  // openDevTools([mainWindow]);
+  // 开发者工具，发布时记录注释掉
+  // mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {

@@ -5,18 +5,40 @@
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
-    "watch": "nodemon --exec electron ."
+    "watch": "nodemon --exec electron .",
+    "build.mac": "electron-builder -m",
+    "build.win": "electron-builder -w",
+    "build.linux": "electron-builder -l"
   },
+  "repository": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
+  "homepage": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
   "keywords": [
     "Electron"
   ],
-  "author": "吴仙杰",
+  "author": "吴仙杰 <wuxianjiezh@163.com>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^12.0.5",
+    "electron-builder": "^22.11.2",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
     "electron-window-state": "^5.0.3"
+  },
+  "build": {
+    "appId": "com.electron.bookmarking",
+    "productName": "网址收藏夹",
+    "copyright": "Copyright © 2021 吴仙杰",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "category": "Utility",
+      "target": "deb"
+    }
   }
 }
