@@ -6,9 +6,11 @@
   "scripts": {
     "start": "electron .",
     "watch": "nodemon --exec electron .",
-    "build.mac": "electron-builder -m",
-    "build.win": "electron-builder -w",
-    "build.linux": "electron-builder -l"
+    "build.macos": "electron-builder --macos",
+    "build.windows": "electron-builder --windows",
+    "build.linux": "electron-builder --linux",
+    "release.windows": "electron-builder --windows --publish onTagOrDraft",
+    "windows-cert": "electron-builder create-self-signed-cert --publisher 吴仙杰"
   },
   "repository": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
   "homepage": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
@@ -29,12 +31,18 @@
     "appId": "com.electron.bookmarking",
     "productName": "网址收藏夹",
     "copyright": "Copyright © 2021 吴仙杰",
+    "publish": {
+      "provider": "github"
+    },
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg"
     },
     "win": {
-      "target": "msi"
+      "target": "nsis",
+      "certificateFile": "./private/吴仙杰.pfx",
+      "certificatePassword": "",
+      "publisherName": "吴仙杰"
     },
     "linux": {
       "category": "Utility",
