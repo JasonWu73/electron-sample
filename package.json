@@ -9,8 +9,7 @@
     "build.macos": "electron-builder --macos",
     "build.windows": "electron-builder --windows",
     "build.linux": "electron-builder --linux",
-    "release.windows": "electron-builder --windows --publish onTagOrDraft",
-    "windows-cert": "electron-builder create-self-signed-cert --publisher 吴仙杰"
+    "release.windows": "electron-builder --windows --publish onTagOrDraft"
   },
   "repository": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
   "homepage": "https://github.com/JasonWu73/electron-sample/tree/bookmarking",
@@ -25,6 +24,8 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "electron-log": "^4.3.5",
+    "electron-updater": "^4.3.9",
     "electron-window-state": "^5.0.3"
   },
   "build": {
@@ -39,10 +40,7 @@
       "target": "dmg"
     },
     "win": {
-      "target": "nsis",
-      "certificateFile": "./private/吴仙杰.pfx",
-      "certificatePassword": "",
-      "publisherName": "吴仙杰"
+      "target": "nsis"
     },
     "linux": {
       "category": "Utility",

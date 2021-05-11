@@ -2,6 +2,7 @@ const {app, BrowserWindow} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 
+const updater = require('./main/updater');
 require('./main/ipc');
 const {ApplicationMenu} = require('./main/menu');
 
@@ -9,6 +10,8 @@ const {ApplicationMenu} = require('./main/menu');
 app.disableHardwareAcceleration();
 
 function createWindow() {
+  setTimeout(updater, 3000);
+
   // electron-window-state: 1
   const mainWindowState = windowStateKeeper({
     defaultWidth: 500,
