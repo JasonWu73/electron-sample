@@ -1,9 +1,79 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, TouchBar} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 
 require('./main/ipc');
+
+const createTouchBar = (mainWindow) => {
+  const {
+    TouchBarLabel,
+    TouchBarButton,
+    TouchBarSpacer,
+    TouchBarColorPicker,
+    TouchBarSlider,
+    TouchBarPopover
+  } = TouchBar;
+
+  const themeLabel = new TouchBarLabel({
+    label: 'Theme:'
+  });
+
+  const openDevToolsBtn = new TouchBarButton({
+    label: 'Open DevTools',
+    backgroundColor: '#1890ff',
+    click: () => {
+      mainWindow.webContents.openDevTools();
+    }
+  });
+
+  const flexibleSpace = new TouchBarSpacer({
+    size: 'flexible'
+  });
+
+  const themeColorPicker = new TouchBarColorPicker({
+    change: color => {
+      console.log(color);
+      mainWindow.webContents.insertCSS(`
+      body {
+        background-color: ${color} !important;
+      }
+      `);
+    }
+  });
+
+  const windowSizeSlider = new TouchBarSlider({
+    minValue: 240,
+    maxValue: 500,
+    value: 10,
+    change: value => {
+      mainWindow.setSize(value, value, true);
+    }
+  });
+
+  const popover = new TouchBarPopover({
+    label: '尺寸',
+    items: new TouchBar({
+      items: [windowSizeSlider]
+    })
+  });
+
+  return new TouchBar({
+    items: [
+      themeLabel,
+      themeColorPicker,
+      popover,
+      flexibleSpace,
+      openDevToolsBtn
+    ]
+  });
+};
+
+const setTouchBarInMacOs = (mainWindow) => {
+  if (process.platform === 'darwin') {
+    mainWindow.setTouchBar(createTouchBar(mainWindow));
+  }
+};
 
 // 离屏渲染：禁用 GPU 渲染，改用软件渲染，效率更高
 app.disableHardwareAcceleration();
@@ -32,18 +102,15 @@ function createWindow() {
     // Showing window gracefully (use a color close to app's background)
     backgroundColor: '#2B2E3B'
   });
- 
+
   // electron-window-state: 3
   mainWindowState.manage(mainWindow);
 
   // Load HTML into the BrowserWindow
   mainWindow.loadFile('renderer/main.html');
 
-  // Open DevTools - Remove for PRODUCTION!
-  const openDevTools = windows =>
-      windows.forEach(window => window.webContents.openDevTools());
-
-  openDevTools([mainWindow]);
+  // 在 MacOS 中设置 TouchBar
+  setTouchBarInMacOs(mainWindow);
 }
 
 // This method will be called when Electron has finished

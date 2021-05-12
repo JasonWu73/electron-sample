@@ -94,6 +94,10 @@
 
 - [Doc: Progress Bar in Taskbar](https://www.electronjs.org/docs/tutorial/progress-bar)
 
+### MacOS
+
+- [Doc: TouchBar](https://www.electronjs.org/docs/api/touch-bar)
+
 ## 项目说明
 
 ### 去除 preload 脚本
