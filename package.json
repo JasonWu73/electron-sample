@@ -32,6 +32,10 @@
     "appId": "com.electron.bookmarking",
     "productName": "网址收藏夹",
     "copyright": "Copyright © 2021 吴仙杰",
+    "files": [
+      "**/*",
+      "./build/tray@2x.png"
+    ],
     "publish": {
       "provider": "github"
     },
@@ -40,7 +44,7 @@
       "target": "dmg"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis:x64"
     },
     "linux": {
       "category": "Utility",
