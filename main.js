@@ -62,8 +62,7 @@ app.whenReady().then(() => {
   });
 });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+app.on('window-all-closed', e => {
+  // 只能通过托盘进行关闭
+  e.preventDefault();
 });
