@@ -49,11 +49,32 @@ function createWindow() {
   // mainWindow.webContents.openDevTools();
 }
 
+function createFloatWindow() {
+  const floatWindow = new BrowserWindow({
+    width: 32,
+    height: 32,
+    titleBarStyle: 'hide',
+    transparent: true,
+    frame: false,
+    resizable: false,
+    hasShadow: false
+  });
+
+  floatWindow.setAutoHideMenuBar(true);
+  floatWindow.loadFile('renderer/float.html');
+  floatWindow.setAlwaysOnTop(true);
+
+  floatWindow.show();
+
+  floatWindow.webContents.openDevTools();
+}
+
 app.whenReady().then(() => {
   // 系统托盘
   tray = new ApplicationTray(createWindow).tray;
 
   createWindow();
+  createFloatWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

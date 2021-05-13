@@ -286,7 +286,6 @@ textarea.input {
 .drag {
   -webkit-user-select: none;
   -webkit-app-region: drag;
-  padding-top: 3.6rem;
 }
 
 .no-drag {
